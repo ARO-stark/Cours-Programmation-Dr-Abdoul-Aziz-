@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ARO.h"
-/*
+
 char sign(double a)
 {
 	return (a < 0) ? '-' : '+';
@@ -102,7 +102,7 @@ int main()
 
 	return 0;
 }
-*/
+
 // Définition d'une fonction de calcul de factorielle.
 unsigned int fact(unsigned int value)
 {
