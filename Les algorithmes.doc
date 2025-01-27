@@ -1,0 +1,353 @@
+EXERCICE 4
+
+Algorithme produitSomme
+    var nb1, nb2 : reel;
+debut
+    ecrire("Veuillez entrer deux nombres :");
+    lire(nb1, nb2);
+    ecrire("Le produit de ", nb1, " et de ", nb2, " est ", nb1 * nb2, " et la somme est ", nb1 + nb2);
+fin
+
+EXERCICE 5
+
+Valeur absolue
+
+Algorithme ValeurAbsolue
+    var nb, s : reel;
+debut 
+    ecrire("Entrez un nombre :");
+    lire(nb);
+    si (nb < 0) alors
+        s <- -nb;
+    sinon
+        s <- nb;
+    fsi
+    ecrire("La valeur absolue de ", nb, " est ", s);
+fin
+
+EXERCICE 6
+
+Parité d’un nombre
+
+Algorithme Parite
+    var nb : entier;
+debut
+    ecrire("Entrez un nombre :");
+    lire(nb);
+    si (nb % 2 = 0) alors
+        ecrire("Le nombre ", nb, " est pair.");
+    sinon
+        ecrire("Le nombre ", nb, " est impair.");
+    fsi
+fin
+
+EXERCICE 7
+
+procedure racine(a : reel, b : reel, c : reel, var x1 : reel, var x2 : reel, var sentinelle : entier)
+    var D : reel;
+debut
+    si (a = 0) alors
+        si (b = 0) alors
+            si (c = 0) alors
+                sentinelle <- 4; // Équation indéterminée
+            sinon
+                sentinelle <- -1; // Pas de solution
+            fsi
+        sinon
+            sentinelle <- 0; // Une solution unique
+            x1 <- x2 <- -c / b;
+        fsi
+    sinon
+        D <- b * b - 4 * a * c;
+        si (D < 0) alors
+            sentinelle <- 3; // Solutions complexes
+            x1 <- -b / (2 * a);
+            x2 <- sqrt(abs(D)) / (2 * a);
+        sinon
+            si (D = 0) alors
+                sentinelle <- 1; // Solution double
+                x1 <- x2 <- -b / (2 * a);
+            sinon
+                sentinelle <- 2; // Deux solutions réelles
+                x1 <- (-b - sqrt(D)) / (2 * a);
+                x2 <- (-b + sqrt(D)) / (2 * a);
+            fsi
+        fsi
+    fsi
+fin
+
+EXERCICE 8
+
+Algorithme calculatrice
+    var nb1, nb2, resultat : reel;
+    var operateur : caractere;
+    var continuer : entier;
+debut
+    continuer <- 1;
+    tantque (continuer = 1) faire
+        ecrire("Entrez le premier nombre :");
+        lire(nb1);
+        ecrire("Entrez l'opérateur (+, -, *, /) :");
+        lire(operateur);
+        ecrire("Entrez le second nombre :");
+        lire(nb2);
+        
+        selon operateur faire
+            cas "+" : resultat <- nb1 + nb2;
+            cas "-" : resultat <- nb1 - nb2;
+            cas "*" : resultat <- nb1 * nb2;
+            cas "/" : 
+                si (nb2 <> 0) alors
+                    resultat <- nb1 / nb2;
+                sinon
+                    ecrire("Erreur : division par zéro !");
+                fsi
+            par defaut :
+                ecrire("Erreur : opérateur non valide !");
+        fselon
+        
+        ecrire("Résultat : ", resultat);
+        ecrire("Voulez-vous continuer ? (1 = Oui, 0 = Non) :");
+        lire(continuer);
+    ftantque
+fin
+
+EXERCICE 9
+
+Algorithme DiviseursNombre
+    var i, nb : entier;
+debut
+    ecrire("Entrez un nombre :");
+    lire(nb);
+    si (nb > 0) alors
+        ecrire("Les diviseurs de ", nb, " sont :");
+        pour i de 1 à nb faire
+            si (nb mod i = 0) alors
+                ecrire(i);
+            fsi
+        fpour
+    sinon
+        ecrire("Veuillez entrer un nombre positif !");
+    fsi
+fin
+
+EXERCICE 10
+
+Algorithme Factoriel
+    var s, nb, i : entier;
+debut
+    ecrire("Entrez un nombre :");
+    lire(nb);
+    s <- 1;
+    pour i de 1 à nb faire
+        s <- s * i;
+    fpour
+    ecrire("Le factoriel de ", nb, " est : ", s);
+fin
+
+EXERCICE 11 :
+Algorithme MoyenneMinMax
+    const N = 20;
+    var tab : tableau[N] de entier;
+    var i, nb, min, max, somme : entier;
+    var moyenne : reel;
+debut
+    ecrire("Entrez la taille du tableau :");
+    lire(nb);
+    pour i de 1 à nb faire
+        ecrire("Entrez une valeur :");
+        lire(tab[i]);
+    fpour
+    min <- tab[1];
+    max <- tab[1];
+    somme <- 0;
+    pour i de 1 à nb faire
+        si (tab[i] < min) alors
+            min <- tab[i];
+        fsi
+        si (tab[i] > max) alors
+            max <- tab[i];
+        fsi
+        somme <- somme + tab[i];
+    fpour
+    moyenne <- somme / nb;
+    ecrire("Minimum : ", min, ", Maximum : ", max, ", Moyenne : ", moyenne);
+fin
+
+EXERCICE 11 : Moyenne, minimum, maximum
+
+Algorithme calcule
+    const N = 20;
+    var tab : tableau[N] de entier;
+    var nb, i, min, max, sum, pos : entier;
+    var moy : reel;
+debut
+    ecrire("Veuillez entrer la longueur de la suite : ");
+    lire(nb);
+    tantque (nb <= 0) faire
+        ecrire("Veuillez entrer un nombre strictement positif : ");
+        lire(nb);
+    ftantque
+
+    ecrire("\nLa suite va contenir : ", nb, " valeurs.");
+    pour i <- 1 à nb faire
+        ecrire("\nVeuillez entrer une note (entre 0 et 20) : ");
+        lire(tab[i]);
+        tantque (tab[i] < 0 ou tab[i] > 20) faire
+            ecrire("Veuillez entrer une note valide (entre 0 et 20) : ");
+            lire(tab[i]);
+        ftantque
+    fpour
+
+    min <- tab[1];
+    max <- tab[1];
+    sum <- 0;
+
+    pour i <- 1 à nb faire
+        si tab[i] < min alors
+            min <- tab[i];
+        fsi
+        si tab[i] > max alors
+            max <- tab[i];
+        fsi
+        sum <- sum + tab[i];
+    fpour
+
+    moy <- sum / nb;
+    ecrire("Le maximum de la suite est : ", max);
+    ecrire("Le minimum de la suite est : ", min);
+    ecrire("La moyenne de la suite est : ", moy);
+fin
+
+
+EXERCICE 12a : Nombre premier
+
+Algorithme NombrePremier
+    var premier, i, nb : entier;
+debut
+    ecrire("Veuillez entrer un nombre : ");
+    lire(nb);
+    si (nb <= 1) alors
+        ecrire("Un nombre premier est strictement supérieur à 1.");
+    sinon
+        premier <- 1;
+        pour i <- 2 à (nb div 2) faire
+            si (nb % i = 0) alors
+                premier <- 0;
+            fsi
+        fpour
+
+        si (premier = 1) alors
+            ecrire("Le nombre ", nb, " est premier.");
+        sinon
+            ecrire("Le nombre ", nb, " n'est pas premier.");
+        fsi
+    fsi
+fin
+
+EXERCICE 12b : Puissance d'un nombre
+
+Algorithme puissanceNombre
+    var nb, S : reel;
+    var i, expo : entier;
+debut
+    ecrire("Veuillez entrer le nombre : ");
+    lire(nb);
+    ecrire("Veuillez entrer l'exposant : ");
+    lire(expo);
+
+    S <- 1;
+    pour i <- 1 à expo faire
+        S <- S * nb;
+    fpour
+
+    ecrire("Le nombre ", nb, " à l'exposant ", expo, " donne ", S);
+fin
+
+EXERCICE 13 : Permutation
+
+Algorithme permutation
+    var t, x1, x2 : reel;
+debut
+    ecrire("Veuillez entrer la première valeur : ");
+    lire(x1);
+    ecrire("Veuillez entrer la deuxième valeur : ");
+    lire(x2);
+
+    ecrire("Avant permutation : x1 = ", x1, " et x2 = ", x2);
+
+    t <- x1;
+    x1 <- x2;
+    x2 <- t;
+
+    ecrire("Après permutation : x1 = ", x1, " et x2 = ", x2);
+fin
+
+
+
+EXERCICE 14 : Minimum entre deux nombres
+
+fonction minimum(var x1 : entier, var x2 : entier) : entier
+debut
+    si x1 < x2 alors
+        retourne x1;
+    sinon
+        retourne x2;
+    fsi
+fin
+
+EXERCICE 15 : Bigrammes
+
+Partie 1 : Procédure
+
+Algorithme bigrammeProc
+    var car : tableau[2] de caractere;
+    var chaine : tableau[256] de caractere;
+    var i, occ : entier;
+debut
+    occ <- 0;
+    ecrire("Veuillez entrer deux caractères : ");
+    lire(car);
+    ecrire("Veuillez entrer l'expression : ");
+    lire(chaine);
+
+    i <- 1;
+    tantque chaine[i] <> '\0' faire
+        si (car[1] = chaine[i] et car[2] = chaine[i + 1]) alors
+            occ <- occ + 1;
+            i <- i + 2;
+        sinon
+            i <- i + 1;
+        fsi
+    ftantque
+    ecrire("Nombre d'occurrences du bigramme : ", occ);
+fin
+
+Partie 2 : Fonction
+
+fonction bigramme(var car : tableau[2] de caractere, var chaine : tableau[256] de caractere) : entier
+    var i, occ : entier;
+debut
+    occ <- 0;
+    i <- 1;
+    tantque chaine[i] <> '\0' faire
+        si (car[1] = chaine[i] et car[2] = chaine[i + 1]) alors
+            occ <- occ + 1;
+            i <- i + 2;
+        sinon
+            i <- i + 1;
+        fsi
+    ftantque
+    retourne occ;
+fin
+
+EXERCICE 16 : Triangle rectangle
+
+fonction Triangle(var a : reel, var b : reel, var c : reel) : entier
+debut
+    si (a^2 = b^2 + c^2 ou b^2 = a^2 + c^2 ou c^2 = a^2 + b^2) alors
+        retourne 1; // Triangle rectangle
+    sinon
+        retourne 0; // Pas un triangle rectangle
+    fsi
+fin
